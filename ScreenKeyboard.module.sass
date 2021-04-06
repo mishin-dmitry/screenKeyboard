@@ -1,0 +1,99 @@
+@import "~sass/global"
+
+$class: screen-keyboard
+$bg-light-grey: #F5F6F7
+$bg-dark-grey: #D4D6D9
+$bg-hover: #9D9FA1
+$bg-pressed: #5A5B5C
+$text-color: #222426
+
+.screen-keyboard-wrap
+	+position(fixed, null null 30px 50%)
+	transform: translateX(-50%)
+
+.#{$class}
+	width: 780px
+	position: relative
+
+	&__underlying
+		+position(absolute, -2px)
+		background-color: #A2A3A6
+		z-index: 19
+		border-radius: 3px
+
+	&._numbers
+		width: 244px
+		margin: 0 auto
+
+		.#{$class}
+			&__row
+				flex-wrap: wrap
+
+			&__item
+				margin-top: 2px
+				width: 100%
+				max-width: 80px
+
+				&:not(:nth-child(3n + 1))
+					margin-left: 2px
+
+				&:nth-child(-n + 3)
+					margin-top: 0
+
+	&:not(._numbers)
+		.#{$class}
+			&__row
+				&:not(:first-child)
+					margin-top: 2px
+
+				&:last-child
+					li:last-child
+						max-width: 102px
+
+			&__item
+				&:not(:first-child)
+					margin-left: 2px
+
+	&__row
+		display: flex
+		padding: 0
+		position: relative
+		z-index: 20
+
+	&__item
+		border-radius: 2px
+		box-sizing: border-box
+		cursor: pointer
+		+size(50px, 40px)
+		display: flex
+		justify-content: center
+		align-items: center
+		text-align: center
+		user-select: none
+		background-color: $bg-light-grey
+		font-size: 20px
+		letter-spacing: 0.01em
+		color: $text-color
+		white-space: nowrap
+
+		&:hover
+			background-color: $bg-hover
+
+		&:active
+			background-color: $bg-pressed
+
+		&._bg-dark
+			background-color: $bg-dark-grey
+
+			&:hover
+				background-color: $bg-hover
+
+			&:active
+				background-color: $bg-pressed
+
+		&._symbol
+			flex: 1
+			max-width: 155px
+
+		&._active
+			background-color: #d3d3d3
